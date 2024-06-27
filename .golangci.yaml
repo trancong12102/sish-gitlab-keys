@@ -1,0 +1,38 @@
+run:
+  go: "1.22.4"
+linters:
+  enable-all: true
+  disable:
+    - exhaustruct # Checks if all structure fields are initialized
+    - godox # Tool for detection of FIXME, TODO and other comment keywords
+    - depguard # Checks that only allowed dependencies are used
+    ## Deprecated linters
+    - maligned
+    - nosnakecase
+    - deadcode
+    - varcheck
+    - ifshort
+    - exhaustivestruct
+    - interfacer
+    - golint
+    - structcheck
+    - scopelint
+    - gomnd
+    - execinquery
+issues:
+  exclude-rules:
+    - path: '.*_test\.go'
+      linters:
+        - gochecknoglobals
+        - funlen
+        - dupl
+linters-settings:
+  gci:
+    sections:
+      - standard
+      - default
+      - prefix(github.com/trancong12102/sish-gitlab-keys)
+  varnamelen:
+    ignore-names:
+      - r
+      - w
