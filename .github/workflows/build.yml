@@ -13,7 +13,6 @@ on:
 
 env:
   PLATFORMS: |
-    linux/arm/v7
     linux/arm64
     linux/amd64
   TAGS: |
@@ -27,16 +26,14 @@ jobs:
   test:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
-
+      - name: Checkout repo
+        uses: actions/checkout@v4
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: '1.22.4'
-
       - name: Run coverage
         run: go test -race -coverprofile=coverage.out -covermode=atomic -v $(go list ./... | grep -v /cmd | grep -v /mocks | grep -v /testutil)
-
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
         with:

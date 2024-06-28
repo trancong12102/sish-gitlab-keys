@@ -1,7 +1,6 @@
 version: 2
 before:
   hooks:
-    - go generate ./...
     - go test ./...
 builds:
   - ldflags:
@@ -11,10 +10,8 @@ builds:
     goos:
       - linux
       - darwin
-      - windows
     goarch:
       - amd64
-      - arm
       - arm64
     main: ./cmd/server
 changelog:

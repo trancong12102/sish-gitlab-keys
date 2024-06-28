@@ -27,7 +27,8 @@ ARG REPOSITORY=unknown
 ARG TARGETOS
 ARG TARGETARCH
 
-ENV GOOS=${TARGETOS} GOARCH=${TARGETARCH}
+ENV GOOS ${TARGETOS}
+ENV GOARCH ${TARGETARCH}
 
 RUN --mount=type=cache,target=/gomod-cache --mount=type=cache,target=/go-cache \
     go build -o /app/server \
@@ -43,5 +44,5 @@ COPY --from=build-image /emptydir /tmp
 COPY --from=build-image /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=build-image /app/ /app/
 
-ENV APP_ENV=production
+ENV APP_ENV production
 ENTRYPOINT ["/app/server"]
