@@ -5,7 +5,32 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/eb2146e7afe5633a0023/maintainability)](https://codeclimate.com/github/trancong12102/sish-gitlab-keys/maintainability)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is an authentication server for sish that uses GitLab SSH keys for authentication.
+This is an authentication server for [sish](https://github.com/antoniomika/sish) that uses GitLab SSH keys for
+authentication.
+
+## Features
+
+- [x] Authenticate users with GitLab SSH keys
+
+## Usage
+
+See environment variables: [environments.md](./docs/environments.md)
+
+### Binary
+
+Download the latest release from the [releases page](https://github.com/trancong12102/sish-gitlab-keys/releases).
+
+```shell
+./sish-gitlab-keys
+```
+
+### Docker
+
+Use the Docker image from [Docker Hub](https://hub.docker.com/r/trancong12102/sish-gitlab-keys).
+
+```shell
+docker run -d -p 8080:8080 -e GITLAB_URL=https://gitlab.com -e GITLAB_TOKEN=your_token trancong12102/sish-gitlab-keys
+```
 
 ## Development
 
