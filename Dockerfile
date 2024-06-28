@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.22.4-alpine as builder
+FROM --platform=$BUILDPLATFORM golang:1.22.4-alpine AS builder
 LABEL maintainer="Tran Cong <trancong12102@gmail.com>"
 
 ENV CGO_ENABLED 0
@@ -15,7 +15,7 @@ COPY go.* ./
 
 RUN --mount=type=cache,target=/gomod-cache --mount=type=cache,target=/go-cache go mod download
 
-FROM builder as build-image
+FROM builder AS build-image
 
 COPY . .
 
@@ -34,7 +34,7 @@ RUN --mount=type=cache,target=/gomod-cache --mount=type=cache,target=/go-cache \
     -ldflags="-s -w -X github.com/${REPOSITORY}/cmd.Version=${VERSION} -X github.com/${REPOSITORY}/cmd.Commit=${COMMIT} -X github.com/${REPOSITORY}/cmd.Date=${DATE}" \
     ./cmd/server
 
-FROM scratch as release
+FROM scratch AS release
 LABEL maintainer="Tran Cong <trancong12102@gmail.com>"
 
 WORKDIR /app
