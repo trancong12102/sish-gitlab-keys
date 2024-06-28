@@ -7,7 +7,7 @@
 
 This is an authentication server for sish that uses GitLab SSH keys for authentication.
 
-## Usage
+## Development
 
 Environment variables: [environments.md](./docs/environments.md)
 
