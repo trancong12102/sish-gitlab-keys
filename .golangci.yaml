@@ -21,7 +21,7 @@ linters:
     - execinquery
 issues:
   exclude-rules:
-    - path: '.*_test\.go'
+    - path: '(.*_test\.go|.*test\/.*)'
       linters:
         - gochecknoglobals
         - funlen

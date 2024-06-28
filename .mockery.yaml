@@ -1,14 +1,10 @@
 with-expecter: True
-inpackage: True
-dir: "{{ .InterfaceDir }}"
+dir: "mocks/{{ .PackageName }}"
 mockname: "Mock{{ .InterfaceName }}"
-outpkg: "{{.PackageName}}"
-filename: "mock_{{ .InterfaceName | snakecase }}_test.go"
+outpkg: "{{ .PackageName }}mocks"
+filename: "{{ .InterfaceName | snakecase }}.go"
 recursive: true
 packages:
-  github.com/trancong12102/sish-gitlab-keys:
-    interfaces:
-      Authorizer:
-      GitlabAPI:
-      AuthHandler:
-      HTTPHandler:
+  github.com/trancong12102/sish-gitlab-keys/internal:
+    config:
+      all: True

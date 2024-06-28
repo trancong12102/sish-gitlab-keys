@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"fmt"
@@ -13,7 +13,7 @@ const (
 	EnvironmentTypeProduction  Environment = "production"
 )
 
-//go:generate go run github.com/g4s8/envdoc@latest -output environments.md -type Config
+//go:generate go run github.com/g4s8/envdoc@latest -output ../../docs/environments.md -type Config
 type Config struct {
 	// Specify the environment: development or production
 	AppEnv Environment `env:"APP_ENV" envDefault:"development"`

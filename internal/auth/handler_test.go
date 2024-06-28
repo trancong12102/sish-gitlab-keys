@@ -1,4 +1,4 @@
-package main
+package auth_test
 
 import (
 	"bytes"
@@ -7,6 +7,10 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/suite"
+
+	"github.com/trancong12102/sish-gitlab-keys/internal/auth"
+	authmocks "github.com/trancong12102/sish-gitlab-keys/mocks/auth"
+	"github.com/trancong12102/sish-gitlab-keys/test/testutil"
 )
 
 type HandlerTestSuite struct {
@@ -24,21 +28,21 @@ const (
 )
 
 var (
-	validBody        = []byte(`{"auth_key":"` + validPubKey + `"}`)
+	validBody        = []byte(`{"auth_key":"` + testutil.ValidPubKey + `"}`)
 	notFoundUserKey  = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP1ypONGj/C1D/MmsLFNoDUAz7pbqOOkKfJmIqoZMKIv nopain@Nopain-MacBook-Pro.local" //nolint:lll
 	notFoundUserBody = []byte(`{"auth_key":"` + notFoundUserKey + `"}`)
 	invalidBody      = []byte("xxx")
 )
 
 func (s *HandlerTestSuite) TestAuthorizePubKey() {
-	service := NewMockAuthorizer(s.T())
+	service := authmocks.NewMockAuthorizer(s.T())
 
 	service.EXPECT().
-		AuthorizePubKey(anythingOfTypeContext, validPubKey).
+		AuthorizePubKey(testutil.AnythingOfTypeContext, testutil.ValidPubKey).
 		Once().
 		Return(nil)
 
-	handler := NewHandler(service)
+	handler := auth.NewHandler(service)
 
 	body := bytes.NewReader(validBody)
 	req := httptest.NewRequest(http.MethodGet, reqURL, body)
@@ -49,15 +53,15 @@ func (s *HandlerTestSuite) TestAuthorizePubKey() {
 	s.Require().Equal(http.StatusOK, w.Code)
 }
 
-func (s *HandlerTestSuite) TestAuthorizePubKey_NotFoundUser() {
-	service := NewMockAuthorizer(s.T())
+func (s *HandlerTestSuite) TestAuthorizePubKey_UserNotActive() {
+	service := authmocks.NewMockAuthorizer(s.T())
 
 	service.EXPECT().
-		AuthorizePubKey(anythingOfTypeContext, notFoundUserKey).
+		AuthorizePubKey(testutil.AnythingOfTypeContext, notFoundUserKey).
 		Once().
-		Return(ErrUserNotFound)
+		Return(auth.ErrUserNotActive)
 
-	handler := NewHandler(service)
+	handler := auth.NewHandler(service)
 
 	body := bytes.NewReader(notFoundUserBody)
 	req := httptest.NewRequest(http.MethodGet, reqURL, body)
@@ -69,9 +73,9 @@ func (s *HandlerTestSuite) TestAuthorizePubKey_NotFoundUser() {
 }
 
 func (s *HandlerTestSuite) TestAuthorizePubKey_InvalidBody() {
-	service := NewMockAuthorizer(s.T())
+	service := authmocks.NewMockAuthorizer(s.T())
 
-	handler := NewHandler(service)
+	handler := auth.NewHandler(service)
 
 	body := bytes.NewReader(invalidBody)
 	req := httptest.NewRequest(http.MethodGet, reqURL, body)

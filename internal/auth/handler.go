@@ -1,4 +1,4 @@
-package main
+package auth
 
 import (
 	"context"
@@ -8,7 +8,7 @@ import (
 )
 
 type Authorizer interface {
-	AuthorizePubKey(ctx context.Context, key string) error
+	AuthorizePubKey(ctx context.Context, pubKey string) error
 }
 
 type Handler struct {

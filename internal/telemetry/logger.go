@@ -1,4 +1,4 @@
-package main
+package telemetry
 
 import (
 	"log/slog"
@@ -7,12 +7,14 @@ import (
 
 	"github.com/rs/zerolog"
 	slogzerolog "github.com/samber/slog-zerolog/v2"
+
+	"github.com/trancong12102/sish-gitlab-keys/internal/config"
 )
 
 func InitLogger() {
 	var zerologLogger zerolog.Logger
 
-	if os.Getenv("APP_ENV") == string(EnvironmentTypeProduction) {
+	if os.Getenv("APP_ENV") == string(config.EnvironmentTypeProduction) {
 		zerologLogger = zerolog.New(os.Stdout).With().Logger()
 	} else {
 		zerologLogger = zerolog.New(

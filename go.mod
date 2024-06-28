@@ -4,8 +4,10 @@ go 1.22.4
 
 require (
 	github.com/caarlos0/env/v11 v11.1.0
+	github.com/google/wire v0.6.0
 	github.com/hellofresh/health-go/v5 v5.5.3
 	github.com/imroc/req/v3 v3.43.7
+	github.com/jarcoal/httpmock v1.3.1
 	github.com/joho/godotenv v1.5.1
 	github.com/rs/zerolog v1.33.0
 	github.com/samber/slog-zerolog/v2 v2.4.0
