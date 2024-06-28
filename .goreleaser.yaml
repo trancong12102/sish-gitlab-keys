@@ -1,7 +1,7 @@
 version: 2
 before:
   hooks:
-    - go test -race $(go list ./... | grep -v /cmd | grep -v /mocks | grep -v /testutil)
+    - go test -race ./...
 builds:
   - ldflags:
       - '{{ $gitURL := replace .GitURL ".git" "" }}{{ $sshRepo := replace $gitURL "git@github.com:" "" }}{{ $httpRepo := replace $sshRepo "https://github.com/" "" }}-s -w -X github.com/{{ $httpRepo }}/cmd.Version={{ .Version }} -X github.com/{{ $httpRepo }}/cmd.Commit={{ .Commit }} -X github.com/{{ $httpRepo }}/cmd.Date={{ .Date }}'
