@@ -131,3 +131,13 @@ Temporary Items
 .apdisk
 
 dist/
+
+# deploy
+deploy/keys/**
+!deploy/keys/.gitkeep
+deploy/letsencrypt/**
+!deploy/letsencrypt/.gitkeep
+deploy/pubkeys/**
+!deploy/pubkeys/.gitkeep
+deploy/ssl/**
+!deploy/ssl/.gitkeep

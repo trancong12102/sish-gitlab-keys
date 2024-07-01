@@ -1,0 +1,17 @@
+acme:
+  email_account: x@example.com
+certificates:
+  - autorestart:
+      - containers:
+          - sish
+    domains:
+      - tunnel.example.com
+      - '*.tunnel.example.com'
+    name: tunnel.example.com
+    profile: cloudflare
+profiles:
+  - name: cloudflare
+    provider: cloudflare
+    provider_options:
+      auth_token: token
+      auth_username: x@example.com

@@ -34,6 +34,8 @@ Use the Docker image from [Docker Hub](https://hub.docker.com/r/trancong12102/si
 docker run -d -p 8080:8080 -e GITLAB_URL=https://gitlab.com -e GITLAB_TOKEN=your_token trancong12102/sish-gitlab-keys
 ```
 
+Example docker deployment with sish, let's encrypt in [deploy](./deploy) directory.
+
 ## Development
 
 Environment variables: [environments.md](./docs/environments.md)
