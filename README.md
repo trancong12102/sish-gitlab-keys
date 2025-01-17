@@ -11,8 +11,6 @@ authentication.
 ## Features
 
 - [x] Authenticate **sish** users with GitLab SSH keys
-- [x] Health check endpoint at `/health`
-- [x] **sish** key authentication endpoint at `/auth`
 
 ## Usage
 
