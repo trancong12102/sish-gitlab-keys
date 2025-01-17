@@ -1,0 +1,12 @@
+ssh-address: :52222
+http-address: :80
+https: false
+admin-console: false
+private-keys-directory: /keys
+bind-random-ports: false
+bind-random-subdomains: false
+domain: tunnel.example.com
+authentication-keys-directory: /pubkeys
+service-console: false
+redirect-root-location: https://example.com
+authentication-key-request-url: http://localhost:8080/auth

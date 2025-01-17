@@ -1,0 +1,21 @@
+services:
+  sish:
+    image: antoniomika/sish:latest
+    container_name: sish
+    volumes:
+      - ./pubkeys:/pubkeys
+      - ./keys:/keys
+      - ./config.yml:/app/config.yml
+    command: --config /app/config.yml
+    network_mode: host
+    restart: always
+  gitlab-keys-auth:
+    image: trancong12102/sish-gitlab-keys:latest
+    container_name: gitlab-keys-auth
+    ports:
+      - 8080:8080
+    environment:
+      - LISTEN_ADDR=:8080
+      - GITLAB_URL=${GITLAB_URL}
+      - GITLAB_ACCESS_TOKEN=${GITLAB_ACCESS_TOKEN}
+    restart: always
