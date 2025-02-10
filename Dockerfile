@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.23.5-alpine AS builder
+FROM --platform=$BUILDPLATFORM golang:1.23.6-alpine AS builder
 LABEL maintainer="Tran Cong <trancong12102@gmail.com>"
 
 ENV CGO_ENABLED 0
