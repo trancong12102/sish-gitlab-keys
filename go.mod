@@ -13,7 +13,7 @@ require (
 	github.com/samber/slog-zerolog/v2 v2.7.3
 	github.com/stretchr/testify v1.10.0
 	golang.org/x/crypto v0.32.0
-	golang.org/x/sync v0.10.0
+	golang.org/x/sync v0.12.0
 )
 
 require (
